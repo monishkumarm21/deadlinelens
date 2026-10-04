@@ -1,4 +1,3 @@
-```markdown
 # 📅 DeadlineLens
 
 DeadlineLens is an AI-powered deadline tracking assistant that uses Google Gemini Vision to understand images containing deadlines, assignments, timetables, notices, syllabi, and calendars.
@@ -16,27 +15,20 @@ Users can upload an image, let the AI identify important dates and tasks, ask fo
   - Syllabi
   - Calendars
   - Schedule screenshots
-
 - 🤖 AI-powered image understanding using Google Gemini
-
 - 📅 Extracts:
   - Task or event name
   - Subject or category
   - Deadline date
   - Time
   - Important instructions
-
 - 💬 Conversational AI support
-
 - 🔎 Ask follow-up questions such as:
   - Which deadline is closest?
   - What should I complete first?
   - What deadlines do I have this week?
-
 - 📧 Generate and send a deadline summary through Gmail
-
 - 🧠 Maintains conversation context during the current session
-
 - 🔐 Secure handling of API keys and Gmail credentials using Streamlit Secrets
 
 ---
@@ -47,7 +39,7 @@ Students often receive important academic deadlines through different sources su
 
 Manually identifying and organizing these deadlines can be time-consuming and may lead to missed submissions.
 
-DeadlineLens simplifies this process by allowing users to upload an image and automatically extract the important deadline-related information using AI.
+DeadlineLens simplifies this process by allowing users to upload an image and automatically extract important deadline-related information using AI.
 
 The extracted information can then be discussed with the chatbot and sent as a clean summary directly to the user's email.
 
@@ -102,13 +94,7 @@ Gmail SMTP
 
 ## 🧠 AI Capabilities
 
-DeadlineLens uses a multimodal Gemini model, meaning the application can understand both:
-
-```text
-Text
-+
-Images
-```
+DeadlineLens uses a multimodal Gemini model, meaning the application can understand both text and images.
 
 For example, a user may upload an assignment screenshot containing:
 
@@ -189,20 +175,19 @@ deadlinelens/
 ├── README.md
 ├── .gitignore
 │
-├── .streamlit/
-│   ├── secrets.toml
-│   └── secrets.toml.example
-│
-└── venv/
+└── .streamlit/
+    └── secrets.toml.example
 ```
 
-### File Description
+> The real `.streamlit/secrets.toml` and local `venv/` folder are intentionally excluded from GitHub.
 
-```text
-app.py
-```
+---
 
-Contains the main Streamlit application logic including:
+## 📄 File Description
+
+### `app.py`
+
+Contains the main Streamlit application logic, including:
 
 - User onboarding
 - Gemini connection
@@ -212,9 +197,7 @@ Contains the main Streamlit application logic including:
 - Deadline summary generation
 - Gmail SMTP integration
 
-```text
-prompts.py
-```
+### `prompts.py`
 
 Contains:
 
@@ -224,25 +207,19 @@ Contains:
 
 Keeping prompts separate makes the application easier to maintain and modify.
 
-```text
-requirements.txt
-```
+### `requirements.txt`
 
 Contains the external Python dependencies required by the project.
 
-```text
-.streamlit/secrets.toml
-```
+### `.streamlit/secrets.toml`
 
 Contains private credentials used locally.
 
 This file must never be uploaded to GitHub.
 
-```text
-.streamlit/secrets.toml.example
-```
+### `.streamlit/secrets.toml.example`
 
-Provides an example of the secrets required to run the application.
+Provides a safe example of the secrets required to run the application.
 
 ---
 
@@ -251,7 +228,7 @@ Provides an example of the secrets required to run the application.
 ### 1. Clone the repository
 
 ```bash
-git clone <YOUR-GITHUB-REPOSITORY-URL>
+git clone https://github.com/monishkumarm21/deadlinelens.git
 ```
 
 Move into the project directory:
@@ -260,33 +237,29 @@ Move into the project directory:
 cd deadlinelens
 ```
 
----
-
 ### 2. Create a virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-### Windows Command Prompt
+#### Windows Command Prompt
 
 ```cmd
 venv\Scripts\activate
 ```
 
-### Windows PowerShell
+#### Windows PowerShell
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-### macOS / Linux
+#### macOS / Linux
 
 ```bash
 source venv/bin/activate
 ```
-
----
 
 ### 3. Install dependencies
 
@@ -305,7 +278,7 @@ streamlit
 google-genai
 ```
 
-Gmail functionality uses Python's built-in:
+Gmail functionality uses Python's built-in modules:
 
 ```python
 smtplib
@@ -318,7 +291,7 @@ so no additional email package is required.
 
 ## 🔑 Environment Setup
 
-Create the following file:
+Create:
 
 ```text
 .streamlit/secrets.toml
@@ -336,16 +309,14 @@ GMAIL_APP_PASSWORD = "your-google-app-password"
 
 ## 🔐 Gmail App Password
 
-DeadlineLens uses Gmail SMTP instead of storing the user's normal Gmail password.
-
-You should use a Google App Password.
+DeadlineLens uses Gmail SMTP with a Google App Password instead of storing the user's normal Gmail password.
 
 General setup:
 
 1. Enable 2-Step Verification on your Google account.
 2. Open Google Account security settings.
 3. Create an App Password.
-4. Use the generated App Password in:
+4. Add the generated password to `.streamlit/secrets.toml`.
 
 ```toml
 GMAIL_APP_PASSWORD = "your-app-password"
@@ -363,9 +334,7 @@ After activating the virtual environment:
 streamlit run app.py
 ```
 
-Streamlit will start a local development server.
-
-Usually the app will be available at:
+The application will usually open at:
 
 ```text
 http://localhost:8501
@@ -419,7 +388,7 @@ venv/
 __pycache__/
 ```
 
-Only the template file should be uploaded:
+Only the template file is committed:
 
 ```text
 .streamlit/secrets.toml.example
@@ -442,17 +411,17 @@ DeadlineLens can be deployed using Streamlit Community Cloud.
 ### Deployment Steps
 
 1. Push the project to GitHub.
-
 2. Open Streamlit Community Cloud.
-
 3. Create a new application.
-
 4. Select:
-   - Repository
-   - Branch
-   - `app.py`
+   - Repository: `monishkumarm21/deadlinelens`
+   - Branch: `main`
+   - Main file: `app.py`
+5. Add the required values in Streamlit Cloud Secrets.
+6. Deploy the application.
+7. Test the complete workflow.
 
-5. Add the following values in Streamlit Cloud Secrets:
+Streamlit Cloud Secrets should contain:
 
 ```toml
 GEMINI_API_KEY = "your-real-gemini-api-key"
@@ -460,13 +429,7 @@ GMAIL_ADDRESS = "your-real-gmail-address"
 GMAIL_APP_PASSWORD = "your-real-app-password"
 ```
 
-6. Deploy the application.
-
-7. Test:
-   - Image upload
-   - Gemini response
-   - Follow-up conversation
-   - Email summary
+Never place real secret values in the GitHub repository.
 
 ---
 
@@ -577,7 +540,7 @@ Possible future improvements include:
 
 ## 💡 Why DeadlineLens?
 
-Traditional deadline tracking requires users to manually read and enter information into calendars or task management applications.
+Traditional deadline tracking requires users to manually read and enter information into calendars or task-management applications.
 
 DeadlineLens combines:
 
@@ -643,28 +606,3 @@ This project is intended for educational and learning purposes.
 ## ⭐ Support
 
 If you find DeadlineLens useful, feel free to star the repository.
-
-```
-
-### One tiny thing before GitHub
-
-Your repository should eventually look like:
-
-```text
-deadlinelens
-├── .streamlit
-│   └── secrets.toml.example
-├── .gitignore
-├── README.md
-├── app.py
-├── prompts.py
-└── requirements.txt
-```
-
-Notice what is **not** supposed to appear on GitHub:
-
-```text
-❌ secrets.toml
-❌ venv/
-❌ __pycache__/
-```
